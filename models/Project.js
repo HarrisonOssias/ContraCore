@@ -27,7 +27,8 @@ const ProjectSchema = mongoose.Schema({
       },
       commentText: String
     }
-  ]
+  ],
+  title: String
 });
 
 module.exports = mongoose.model('project', ProjectSchema);

@@ -62,4 +62,25 @@ router.get('/:id', [auth], async (req, res) => {
   }
 });
 
+/**
+ * @route     /api/project
+ * @desc      Get projects associated with a user id
+ * @access    Private
+ */
+router.get('/', auth, async (req, res) => {
+  try {
+    let projects = await Project.find(req.user);
+    if (!projects) {
+      return res
+        .status(404)
+        .json({ msg: 'No project found under this user id' });
+    }
+
+    res.json({ projects });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

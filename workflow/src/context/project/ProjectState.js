@@ -55,6 +55,15 @@ const ProjectState = props => {
     }
   };
 
+  const getProjects = async () => {
+    try {
+      let res = await axios.get('/api/project');
+      return res.data;
+    } catch (error) {
+      dispatch({ type: PROJECT_ERROR });
+    }
+  };
+
   // Add new job
   const newJob = async ({ date, title, cost, _id, user }) => {
     const config = {
@@ -147,7 +156,8 @@ const ProjectState = props => {
         deleteJob,
         addComment,
         deleteComment,
-        getComments
+        getComments,
+        getProjects
       }}
     >
       {props.children}

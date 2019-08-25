@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavigationPage from './components/pages/NavigationPage';
 import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 import AuthState from './context/auth/AuthState';
 import ProjectState from './context/project/ProjectState';
 
@@ -18,6 +19,7 @@ const App = () => {
               <Switch>
                 <Route exact path='/' component={NavigationPage} />
                 <Route exact path='/login' component={Login} />
+                <Route exact path='/register' component={Register} />
               </Switch>
             </Fragment>
           </Router>

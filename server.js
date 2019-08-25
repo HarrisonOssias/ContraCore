@@ -1,14 +1,14 @@
 const express = require('express');
-// const connectDB = require('./config/db');
-// const path = require('path');
+const connectDB = require('./config/db');
+const path = require('path');
 
 const app = express();
 
 // Connect database
-// connectDB();
+connectDB();
 
-// // Init middleware
-// app.use(express.json({ extended: false }));
+// Init middleware
+app.use(express.json({ extended: false }));
 
 // Define routes
 app.use('/api/users', require('./routes/users'));
