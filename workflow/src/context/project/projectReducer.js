@@ -1,15 +1,15 @@
+import {
+  PROJECT_ADDED,
+  PROJECT_ERROR,
+  LOAD_PROJECT,
+  DELETE_JOB,
+  JOB_ERROR,
+  ADD_COMMENT,
+  GET_COMMENTS,
+  COMMENT_ERROR,
+  DELETE_COMMENT
+} from '../types';
 export default (state, action) => {
-  import {
-    PROJECT_ADDED,
-    PROJECT_ERROR,
-    LOAD_PROJECT,
-    DELETE_JOB,
-    JOB_ERROR,
-    ADD_COMMENT,
-    GET_COMMENTS,
-    COMMENT_ERROR
-  } from '../types';
-
   switch (action.type) {
     case PROJECT_ADDED:
       return {
@@ -40,7 +40,7 @@ export default (state, action) => {
         loading: false
       };
     case DELETE_COMMENT:
-      const { cId, project } = action.payload;
+      const { cId } = action.payload;
       return {
         ...state,
         current: state.current.comments.splice(

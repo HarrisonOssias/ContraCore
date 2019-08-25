@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const guestLinks = (
-    <nav class='navbar navbar-expand-md  bg-primary sticky-top'>
+    <nav class='navbar navbar-expand-md bg-dark sticky-top'>
       <button
         class='navbar-toggler'
         data-toggle='collapse'
@@ -14,7 +14,10 @@ const Navbar = () => {
       </button>
       <div class='collapse navbar-collapse' id='collapse_target'>
         <a class='navbar-brand'>
-          <img src='img/cloudclicker.png'></img>
+          <img
+            src={require('./logo.png')}
+            style={{ width: '5rem', height: '5rem' }}
+          ></img>
         </a>
         <ul class='navbar-nav'>
           <li nav class='nav-item'>
@@ -40,7 +43,7 @@ const Navbar = () => {
       </button>
       <div class='collapse navbar-collapse' id='collapse_target'>
         <a class='navbar-brand'>
-          <img src='img/cloudclicker.png'></img>
+          <img src={require('./logo.png')}></img>
         </a>
         <ul class='navbar-nav'>
           <li nav class='nav-item'>
