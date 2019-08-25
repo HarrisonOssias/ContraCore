@@ -82,6 +82,12 @@ router.delete('/:id', auth, async (req, res) => {
       .map(job => job._id)
       .indexOf(req.params.id);
 
+    if (deleteIndex < 0 || !deleteIndex) {
+      return res
+        .status(404)
+        .json({ msg: 'No index had the same id as passed in' });
+    }
+
     project.timeline.splice(deleteIndex, 1);
 
     await project.save();
