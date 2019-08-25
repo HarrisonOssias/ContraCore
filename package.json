@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "workflow": "npm start --prefix workflow",
+    "workflowinstall": "npm install --prefix workflow",
+    "dev": "concurrently \"npm run server\" \"npm run workflow\""
   },
   "repository": {
     "type": "git",

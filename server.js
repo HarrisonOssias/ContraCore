@@ -13,9 +13,9 @@ const app = express();
 // Define routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/project', required('./routes/project'));
-app.use('/api/timeline', required('./routes/timeline'));
-app.use('/api/comments', required('./routes/comments'));
+app.use('/api/project', require('./routes/project'));
+app.use('/api/timeline', require('./routes/timeline'));
+app.use('/api/comments', require('./routes/comments'));
 
 // Serve static assets in production
 // if (process.env.NODE_ENV === 'production') {

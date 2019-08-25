@@ -14,9 +14,7 @@ router.post(
   [
     auth,
     [
-      check('date', 'Please enter a date for the job.')
-        .exists()
-        .isDate(),
+      check('date', 'Please enter a date for the job.').exists(),
       check('title', 'Please enter a title for the job').exists(),
       check('cost', 'Please enter a projected cost for the job').exists()
     ]
