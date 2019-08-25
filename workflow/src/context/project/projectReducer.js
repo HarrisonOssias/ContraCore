@@ -4,7 +4,10 @@ export default (state, action) => {
     PROJECT_ERROR,
     LOAD_PROJECT,
     DELETE_JOB,
-    JOB_ERROR
+    JOB_ERROR,
+    ADD_COMMENT,
+    GET_COMMENTS,
+    COMMENT_ERROR
   } from '../types';
 
   switch (action.type) {
@@ -24,11 +27,32 @@ export default (state, action) => {
       const { jid, project } = action.payload;
       return {
         ...state,
-        current: () => {
-          let deleteIndex = project.timeline.map(job => job._id).indexOf(jid);
-          project.timeline.splice(deleteIndex, 1);
-          return project;
-        },
+        current: project.timeline.splice(
+          project.timeline.map(job => job._id).indexOf(jid),
+          1
+        ),
+        loading: false
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        current: state.current.comments.unshift(action.payload.comments[0]),
+        loading: false
+      };
+    case DELETE_COMMENT:
+      const { cId, project } = action.payload;
+      return {
+        ...state,
+        current: state.current.comments.splice(
+          state.current.comments.map(comment => comment._id).indexOf(cId),
+          1
+        ),
+        loading: false
+      };
+    case GET_COMMENTS:
+      return {
+        ...state,
+        comments: action.payload,
         loading: false
       };
     default:

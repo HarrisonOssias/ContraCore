@@ -11,7 +11,11 @@ import {
     NEW_JOB,
     DELETE_JOB,
     JOB_ERROR,
-    LOAD_PROJECT
+    LOAD_PROJECT,
+    ADD_COMMENT,
+    DELETE_COMMENT,
+    GET_COMMENTS,
+    COMMENT_ERROR
 } from '../types';
 
 
@@ -19,6 +23,7 @@ const ProjectState = () => {
     const initialState = {
         projects: null,
         current: null,
+        comments: null,
         loading: true
     };
 
@@ -77,7 +82,7 @@ const ProjectState = () => {
     }
 
     // Delete Job
-    const deleteJob = (jid) => {
+    const deleteJob = async (jid) => {
         try {
             let res = await axios.delete(`/api/timeline/${jid}`);
             const body = {
@@ -91,28 +96,64 @@ const ProjectState = () => {
     }
 
     // Add comment
-    const addComment = () => {
+    const addComment = async ({pId, commentText}) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
         try {
-            
+            let res = await axios.post(`/api/comments/${pId}`, commentText, config);
+            dispatch({ type: ADD_COMMENT, payload: res.data });
         } catch (error) {
-            
+            dispatch({ type: COMMENT_ERROR });
         }
     }
 
     // Delete comment
+    const deleteComment = async ({cId, pId}) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const _id = pId;
+        try {
+            let res = await axios.delete(`/api/comments/${cId}`, _id, config);
+            const body ={
+                cId: cId,
+                project: res.data
+            }
+            dispatch({ type: DELETE_COMMENT, payload: body });
+        } catch (error) {
+            dispatch({ type: COMMENT_ERROR });
+        }
+    }
 
     // Get comments
+    const getComments = ({pId}) => {
+        try {
+            let res = axios.get(`/api/comments/${pId}`);
+            dispatch({ type: GET_COMMENTS, payload: res.data });
+        } catch (error) {
+            dispatch({ type: COMMENT_ERROR });
+        }
+    }
 
   return (
     <ProjectState.Provider 
     value={{
         projects: state.projects,
         current: state.current,
+        comments: state.comments,
         loading: state.loading,
         addProject,
         loadProject,
         newJob,
-        deleteJob
+        deleteJob,
+        addComment,
+        deleteComment,
+        getComments
     }}>{props.children}</ProjectState.Provider>
   );
 };

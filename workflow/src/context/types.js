@@ -13,3 +13,6 @@ export const NEW_JOB = 'NEW_JOB';
 export const JOB_ERROR = 'JOB_ERROR';
 export const LOAD_PROJECT = 'LOAD_PROJECT';
 export const DELETE_JOB = 'DELETE_JOB';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const GET_COMMENTS = 'GET_COMMENTS';
+export const COMMENT_ERROR = 'COMMENT_ERROR';
